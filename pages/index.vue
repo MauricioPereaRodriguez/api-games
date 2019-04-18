@@ -10,7 +10,7 @@
             img-top
             style="max-width: 20rem;">
             <p class="card-text">{{game.genres[0].names}}</p>
-            <b-button variant="primary">Ver más... </b-button>
+            <nuxt-link :to="'/games/' + game.id" class="btn btn-primary">Ver más... </nuxt-link>
           </b-card>
         </b-col>
       </b-row>

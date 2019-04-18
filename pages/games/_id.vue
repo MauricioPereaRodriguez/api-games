@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <b-container class="mt-3">
+      <b-row>
+        <b-col cols="3">
+          <img :src="game.cover.url.replace('t_thumb', 't_cover_big')" alt="portada">
+        </b-col>
+        <b-col cols="9">
+          <b-card
+          :title="game.name"
+          class="mb-2">
+            <b v-for="(consola, index) in game.platforms" :key="index">{{consola.name}}</b>
+            <p class="card-text">{{game.summary}}</p>
+            <p>Calificación: {{ Math.round(game.total_rating) }}</p>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+<script>
+  import axios from 'axios'
+  export default {
+    asyncData({params}){
+      const cors = 'https://cors-anywhere.herokuapp.com/';
+      return axios.get(`${cors}https://api-v3.igdb.com/games/${params.id}/?fields=name,cover.url,summary,platforms.name,screenshots.url,total_rating&expand=platforms,screenshots,cover`)
+        .then(res => {
+          return {
+            game:res.data[0]
+          }
+        })
+    }
+  }
+</script>
