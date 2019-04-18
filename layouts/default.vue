@@ -1,8 +1,19 @@
 <template>
   <div>
+    <Cabecera/>
     <nuxt />
   </div>
 </template>
+
+<script>
+  import Cabecera from '@/components/Cabecera.vue'
+
+  export default {
+    components: {
+      Cabecera
+    }
+  }
+</script>
 
 <style>
 html {
