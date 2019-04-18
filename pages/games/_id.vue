@@ -18,6 +18,24 @@
         </b-col>
       </b-row>
     </b-container>
+    <b-container class="mt-3">
+      <b-carousel
+        id="carousel"
+        style="text-shadow: 1px 1px 2px #333;"
+        controls
+        indicators
+        :interval="4000"
+        img-width="1024"
+        img-height="480"
+        v-model="slide"
+        @sliding-start="onSlideStart"
+        @sliding-end="onSlideEnd"
+      >
+        <b-carousel-slide
+          v-for="(screenshot, index) in game.screenshots" :key="index"
+          :img-src="screenshot.url.replace('t_thumb', 't_screenshot_med')"></b-carousel-slide>
+      </b-carousel>
+    </b-container>
   </div>
 </template>
 
