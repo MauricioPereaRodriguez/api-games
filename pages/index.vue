@@ -1,6 +1,20 @@
 <template>
   <div>
-    <h1>Inicio</h1>
+    <b-container class="mt-3">
+      <b-row>
+        <b-col cols="4" v-for="game in games" :key="game.id">
+          <b-card
+            :title="game.name"
+            :img-src="game.cover.url.replace('t_thumb', 't_cover_big')"
+            img-alt="Imagen"
+            img-top
+            style="max-width: 20rem;">
+            <p class="card-text">{{game.genres[0].names}}</p>
+            <b-button variant="primary">Ver más... </b-button>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -22,6 +36,7 @@ export default {
     const cors = 'https://cors-anywhere.herokuapp.com/';
     return axios.get(`${cors}https://api-v3.igdb.com/games/?fields=name,genres.name,cover.url,popularity&order=popularity:desc&expand=genres`)
       .then(res => {
+        //console.log(res);
         return {
           games:res.data
         }
