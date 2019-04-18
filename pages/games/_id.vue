@@ -11,7 +11,9 @@
           class="mb-2">
             <b v-for="(consola, index) in game.platforms" :key="index">{{consola.name}}</b>
             <p class="card-text">{{game.summary}}</p>
-            <p>Calificación: {{ Math.round(game.total_rating) }}</p>
+            <div v-if="game.total_rating != null" >
+              <p>Calificación: {{ Math.round(game.total_rating) }}</p>
+            </div>
           </b-card>
         </b-col>
       </b-row>
